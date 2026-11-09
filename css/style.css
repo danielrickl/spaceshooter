@@ -44,6 +44,24 @@ canvas {
 
 #lives { color: #ff4d6d; letter-spacing: 4px; }
 
+#highscore { font-size: 14px; color: #ffd84d; text-shadow: 0 0 6px #fa0; }
+
+#effects { font-size: 16px; color: #5cf; text-align: center; }
+
+.bonus-info { font-size: 16px !important; color: #ffd84d; line-height: 1.5; }
+
+#new-record {
+  font-size: 26px !important;
+  font-weight: bold;
+  color: #ffd84d;
+  text-shadow: 0 0 10px #fa0;
+  animation: pulse 0.8s infinite alternate;
+}
+
+#new-record.hidden { display: none; }
+
+@keyframes pulse { from { transform: scale(1); } to { transform: scale(1.12); } }
+
 .overlay {
   position: absolute;
   inset: 0;

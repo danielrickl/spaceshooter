@@ -11,13 +11,20 @@
     <canvas id="game" width="800" height="600"></canvas>
 
     <div id="hud">
-      <div id="score">Skóre: 0</div>
+      <div id="score-box">
+        <div id="score">Skóre: 0</div>
+        <div id="highscore">Rekord: 0</div>
+      </div>
+      <div id="effects"></div>
       <div id="lives"></div>
     </div>
 
     <div id="start-screen" class="overlay">
       <h1>SPACE SHOOTER</h1>
       <p>Sestřel co nejvíc meteoritů!</p>
+      <p class="bonus-info">Zlaté meteority dávají odměnu:<br>
+        +50 bodů · extra život · štít · trojitá střela</p>
+      <p>Rekord: <span id="start-highscore">0</span></p>
       <ul class="controls">
         <li><kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> pohyb</li>
         <li><kbd>Mezerník</kbd> střelba</li>
@@ -28,7 +35,9 @@
 
     <div id="gameover-screen" class="overlay hidden">
       <h1>GAME OVER</h1>
+      <p id="new-record" class="hidden">🏆 NOVÝ REKORD! 🏆</p>
       <p>Tvoje skóre: <span id="final-score">0</span></p>
+      <p>Rekord: <span id="final-highscore">0</span></p>
       <button id="restart-btn">Hrát znovu</button>
       <p class="hint">nebo stiskni Enter</p>
     </div>

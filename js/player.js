@@ -12,6 +12,8 @@ class Player {
     this.lives = CONFIG.START_LIVES;
     this.invulnerableTimer = 0;
     this.shootTimer = 0;
+    this.shieldTimer = 0;
+    this.tripleShotTimer = 0;
   }
 
   get centerX() { return this.x + this.width / 2; }
@@ -33,16 +35,23 @@ class Player {
 
     if (this.shootTimer > 0) this.shootTimer -= dt;
     if (this.invulnerableTimer > 0) this.invulnerableTimer -= dt;
+    if (this.shieldTimer > 0) this.shieldTimer -= dt;
+    if (this.tripleShotTimer > 0) this.tripleShotTimer -= dt;
   }
 
   canShoot() { return this.shootTimer <= 0; }
 
+  // vrací pole střel (1, nebo 3 při trojité střele)
   shoot() {
     this.shootTimer = CONFIG.SHOOT_COOLDOWN;
-    return new Bullet(this.centerX - CONFIG.BULLET_WIDTH / 2, this.y);
+    const x = this.centerX - CONFIG.BULLET_WIDTH / 2;
+    if (this.tripleShotTimer > 0) {
+      return [new Bullet(x, this.y, -150), new Bullet(x, this.y, 0), new Bullet(x, this.y, 150)];
+    }
+    return [new Bullet(x, this.y)];
   }
 
-  isInvulnerable() { return this.invulnerableTimer > 0; }
+  isInvulnerable() { return this.invulnerableTimer > 0 || this.shieldTimer > 0; }
 
   hit() {
     this.lives--;
@@ -50,8 +59,26 @@ class Player {
   }
 
   draw(ctx) {
-    // blikání při nezranitelnosti
-    if (this.isInvulnerable() && Math.floor(this.invulnerableTimer * 10) % 2 === 0) return;
+    // štít
+    if (this.shieldTimer > 0) {
+      // v poslední sekundě štít bliká
+      if (this.shieldTimer > 1 || Math.floor(this.shieldTimer * 10) % 2 === 0) {
+        ctx.save();
+        ctx.strokeStyle = '#5cf';
+        ctx.fillStyle = 'rgba(80, 200, 255, 0.15)';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = '#5cf';
+        ctx.shadowBlur = 15;
+        ctx.beginPath();
+        ctx.arc(this.centerX, this.centerY + 4, this.height * 0.75, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    // blikání při nezranitelnosti po zásahu
+    if (this.invulnerableTimer > 0 && Math.floor(this.invulnerableTimer * 10) % 2 === 0) return;
 
     const { x, y, width: w, height: h } = this;
     ctx.save();

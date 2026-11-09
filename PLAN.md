@@ -117,11 +117,11 @@ START  --(Enter / klik "Start")-->  PLAYING  --(lives = 0)-->  GAME_OVER
 
 ## 11. Možná rozšíření (později)
 
-- Nejvyšší skóre uložené v `localStorage`.
+- ✅ Nejvyšší skóre uložené v `localStorage`.
+- ✅ Bonusové meteority s odměnou (+50 bodů, život, štít, trojitá střela).
 - Zvuky (střelba, výbuch, game over).
 - Částicové výbuchy při zásahu.
 - Pauza (klávesa `P`).
-- Power-upy (štít, dvojitá střela, extra život).
 - Rozpad velkých meteoritů na menší.
 - Ovládání na mobilu (dotyková tlačítka).
 

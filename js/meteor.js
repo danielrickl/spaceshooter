@@ -1,6 +1,10 @@
 class Meteor {
   constructor(speedBonus = 0) {
-    this.radius = randomBetween(CONFIG.METEOR_MIN_RADIUS, CONFIG.METEOR_MAX_RADIUS);
+    this.bonus = Math.random() < CONFIG.BONUS_CHANCE;
+    // bonusové meteority jsou menší – těžší na zásah
+    this.radius = this.bonus
+      ? randomBetween(16, 24)
+      : randomBetween(CONFIG.METEOR_MIN_RADIUS, CONFIG.METEOR_MAX_RADIUS);
     this.x = randomBetween(this.radius, CONFIG.WIDTH - this.radius);
     this.y = -this.radius;
     this.speed = randomBetween(CONFIG.METEOR_MIN_SPEED, CONFIG.METEOR_MAX_SPEED) + speedBonus;
@@ -27,8 +31,15 @@ class Meteor {
     ctx.translate(this.x, this.y);
     ctx.rotate(this.rotation);
 
-    ctx.fillStyle = '#7a6250';
-    ctx.strokeStyle = '#4a3a2e';
+    if (this.bonus) {
+      ctx.fillStyle = '#f5c542';
+      ctx.strokeStyle = '#fff3b0';
+      ctx.shadowColor = '#ffd84d';
+      ctx.shadowBlur = 20 + Math.sin(performance.now() / 120) * 8; // pulzující záře
+    } else {
+      ctx.fillStyle = '#7a6250';
+      ctx.strokeStyle = '#4a3a2e';
+    }
     ctx.lineWidth = 3;
     ctx.beginPath();
     const n = this.shape.length;
@@ -44,7 +55,8 @@ class Meteor {
     ctx.stroke();
 
     // krátery
-    ctx.fillStyle = '#5e4a3c';
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = this.bonus ? '#c9962a' : '#5e4a3c';
     ctx.beginPath();
     ctx.arc(-this.radius * 0.3, -this.radius * 0.2, this.radius * 0.2, 0, Math.PI * 2);
     ctx.arc(this.radius * 0.35, this.radius * 0.3, this.radius * 0.14, 0, Math.PI * 2);

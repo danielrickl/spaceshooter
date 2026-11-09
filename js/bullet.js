@@ -1,16 +1,18 @@
 class Bullet {
-  constructor(x, y) {
+  constructor(x, y, vx = 0) {
     this.x = x;
     this.y = y;
     this.width = CONFIG.BULLET_WIDTH;
     this.height = CONFIG.BULLET_HEIGHT;
     this.speed = CONFIG.BULLET_SPEED;
+    this.vx = vx; // vodorovná rychlost (šikmé střely u trojité střely)
     this.dead = false;
   }
 
   update(dt) {
     this.y -= this.speed * dt;
-    if (this.y + this.height < 0) this.dead = true;
+    this.x += this.vx * dt;
+    if (this.y + this.height < 0 || this.x < -this.width || this.x > CONFIG.WIDTH) this.dead = true;
   }
 
   draw(ctx) {
