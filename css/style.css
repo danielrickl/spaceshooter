@@ -1,0 +1,99 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, #1b2440 0%, #05060d 100%);
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+#game-wrapper {
+  position: relative;
+  width: 800px;
+  height: auto;
+  max-width: 100vw;
+  aspect-ratio: 4 / 3;
+  border: 2px solid #3a4a7a;
+  border-radius: 8px;
+  box-shadow: 0 0 40px rgba(80, 140, 255, 0.35);
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+#hud {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 0 0 6px #4af;
+  pointer-events: none;
+}
+
+#lives { color: #ff4d6d; letter-spacing: 4px; }
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: rgba(0, 0, 10, 0.75);
+  text-align: center;
+}
+
+.overlay.hidden { display: none; }
+
+.overlay h1 {
+  font-size: 56px;
+  letter-spacing: 4px;
+  color: #7cf;
+  text-shadow: 0 0 12px #4af, 0 0 24px #28f;
+}
+
+#gameover-screen h1 { color: #ff6b81; text-shadow: 0 0 12px #f45, 0 0 24px #c12; }
+
+.overlay p { font-size: 20px; }
+
+.controls { list-style: none; line-height: 2; font-size: 18px; }
+
+kbd {
+  display: inline-block;
+  min-width: 28px;
+  padding: 2px 8px;
+  margin: 0 2px;
+  border: 1px solid #889;
+  border-radius: 4px;
+  background: #223;
+  font-family: inherit;
+}
+
+button {
+  padding: 12px 36px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(#3a8cff, #1f5fd1);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+button:hover { transform: scale(1.06); box-shadow: 0 0 16px #4af; }
+
+.hint { font-size: 14px !important; color: #99a; }

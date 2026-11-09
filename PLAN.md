@@ -29,9 +29,8 @@ spaceshooter/
     └── game.js     # herní smyčka, stav hry, skóre, životy, reset
 ```
 
-Skripty se načítají jako ES moduly (`<script type="module" src="js/game.js">`).
-Pozn.: moduly vyžadují spuštění přes lokální server (např. `npx serve` nebo VS Code Live Server).
-Pokud chceme otevírat přímo `index.html` z disku, použijeme obyčejné `<script>` tagy ve správném pořadí.
+Skripty se načítají obyčejnými `<script>` tagy ve správném pořadí (config → input → objekty → collision → game),
+takže hru stačí otevřít dvojklikem na `index.html` – není potřeba žádný server.
 
 ## 3. Herní objekty
 

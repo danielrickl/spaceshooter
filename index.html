@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Shooter</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="game-wrapper">
+    <canvas id="game" width="800" height="600"></canvas>
+
+    <div id="hud">
+      <div id="score">Skóre: 0</div>
+      <div id="lives"></div>
+    </div>
+
+    <div id="start-screen" class="overlay">
+      <h1>SPACE SHOOTER</h1>
+      <p>Sestřel co nejvíc meteoritů!</p>
+      <ul class="controls">
+        <li><kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> pohyb</li>
+        <li><kbd>Mezerník</kbd> střelba</li>
+      </ul>
+      <button id="start-btn">Start</button>
+      <p class="hint">nebo stiskni Enter</p>
+    </div>
+
+    <div id="gameover-screen" class="overlay hidden">
+      <h1>GAME OVER</h1>
+      <p>Tvoje skóre: <span id="final-score">0</span></p>
+      <button id="restart-btn">Hrát znovu</button>
+      <p class="hint">nebo stiskni Enter</p>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/bullet.js"></script>
+  <script src="js/meteor.js"></script>
+  <script src="js/collision.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
